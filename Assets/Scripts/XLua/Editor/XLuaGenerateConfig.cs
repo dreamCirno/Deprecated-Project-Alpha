@@ -8,7 +8,6 @@ namespace XLua.Editor {
         [LuaCallCSharp]
         public static List<Type> LuaCallCSharpList =>
             (from type in Assembly.Load("Assembly-CSharp").GetTypes()
-                where type.Namespace == "DefaultNamespace"
                 select type).ToList();
 
         /// <summary>
