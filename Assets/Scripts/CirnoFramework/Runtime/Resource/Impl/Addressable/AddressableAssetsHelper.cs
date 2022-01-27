@@ -9,7 +9,7 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
-namespace CirnoFramework.Runtime.Resource.Impl {
+namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
     public class AddressableAssetsHelper : IAssetsHelper {
         private Dictionary<string, AsyncOperationHandle<SceneInstance>> _sceneInstanceAsync =
             new Dictionary<string, AsyncOperationHandle<SceneInstance>>();

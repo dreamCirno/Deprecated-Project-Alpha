@@ -1,8 +1,9 @@
 ﻿using CirnoFramework.Runtime.Base;
 using CirnoFramework.Runtime.Resource.Base;
+using CirnoFramework.Runtime.Resource.Impl.Addressable;
 
 namespace CirnoFramework.Runtime.Resource {
-    public class ResourceManager : IGameFrameworkModule {
+    public class ResourceManager : IGameFrameworkModule, IUpdatable {
         public int Priority => 0;
 
         #region Property
@@ -20,14 +21,32 @@ namespace CirnoFramework.Runtime.Resource {
         #endregion
 
         public ResourceManager() {
+        }
+
+        #region Public interface
+
+        public void SetResourceHelper(IAssetsHelper resourceHelper) {
+            Asset?.Clear();
+            Asset = resourceHelper;
+        }
+
+        #endregion
+
+        #region Implement
+
+        public void OnInit() {
+            Asset = new AddressableAssetsHelper();
+            Version = new AddressableVersion();
+        }
+
+        public void OnUpdate() {
             
         }
 
-        public void OnInit() {
-
-        }
-
         public void OnClose() {
+            Asset?.Clear();
         }
+
+        #endregion
     }
 }
