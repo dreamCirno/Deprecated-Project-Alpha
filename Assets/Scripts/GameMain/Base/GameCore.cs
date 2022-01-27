@@ -1,4 +1,7 @@
-﻿using CirnoFramework.Runtime;
+﻿using System;
+using CirnoFramework.Runtime;
+using CirnoFramework.Runtime.Utility;
+using GameFramework;
 using UnityEngine;
 
 namespace DefaultNamespace {
@@ -6,6 +9,10 @@ namespace DefaultNamespace {
     /// 游戏入口。
     /// </summary>
     public partial class GameCore : MonoBehaviour {
+        private void Awake() {
+            InitLogHelper();
+        }
+
         private void Start() {
             InitBuiltinComponents();
             InitCustomComponents();
@@ -20,8 +27,17 @@ namespace DefaultNamespace {
         }
 
         private void OnDestroy() {
-            Debug.Log($"{nameof(GameFrameworkCore)}: ShutDown.");
             GameFrameworkCore.ShutDown();
+            Log.Info($"{nameof(GameFrameworkCore)}: ShutDown.");
+        }
+
+        private void InitLogHelper() {
+            var logHelperType = typeof(DefaultLogHelper);
+
+            GameFrameworkLog.ILogHelper logHelper =
+                (GameFrameworkLog.ILogHelper) Activator.CreateInstance(logHelperType);
+
+            GameFrameworkLog.SetLogHelper(logHelper);
         }
     }
 }
