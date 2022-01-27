@@ -1,10 +1,17 @@
-﻿using UnityEngine;
+﻿using CirnoFramework.Runtime;
+using CirnoFramework.Runtime.Resource;
+using CirnoFramework.Runtime.XLua;
+using UnityEngine;
 
 namespace DefaultNamespace {
     /// <summary>
     /// 游戏入口。
     /// </summary>
-    public partial class GameCore : MonoBehaviour {
+    public partial class GameCore {
+        public static ResourceManager Resource { get; private set; }
+
+        public static XLuaManager XLua { get; private set; }
+
         // /// <summary>
         // /// 获取游戏基础组件。
         // /// </summary>
@@ -106,6 +113,11 @@ namespace DefaultNamespace {
         // public static WebRequestComponent WebRequest { get; private set; }
 
         private static void InitBuiltinComponents() {
+            Resource = GameFrameworkCore.GetModule<ResourceManager>();
+            XLua = GameFrameworkCore.GetModule<XLuaManager>();
+
+            GameFrameworkCore.Init();
+
             // Base = UnityGameFramework.Runtime.GameEntry.GetComponent<BaseComponent>();
             // Config = UnityGameFramework.Runtime.GameEntry.GetComponent<ConfigComponent>();
             // DataNode = UnityGameFramework.Runtime.GameEntry.GetComponent<DataNodeComponent>();
