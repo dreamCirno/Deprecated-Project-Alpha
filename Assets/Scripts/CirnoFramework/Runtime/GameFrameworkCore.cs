@@ -63,8 +63,9 @@ namespace CirnoFramework.Runtime {
         /// </summary>
         public static void ShutDown() {
             var orderResult = _allGameModules.OrderBy(x => x.Value.Priority);
-            foreach (var item in orderResult) {
-                item.Value.OnClose();
+            foreach (var module in orderResult) {
+                module.Value.OnClose();
+                Debug.Log($"{module.Value.GetType().Name} OnClose.");
             }
 
             _updatableGameModules.Clear();

@@ -115,6 +115,7 @@ namespace CirnoFramework.Runtime.Resource {
 
         public void OnClose() {
             Asset?.Clear();
+            _gameObjectPoolHelper?.DestroyAll();
         }
 
         #endregion

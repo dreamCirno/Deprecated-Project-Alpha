@@ -28,7 +28,7 @@ namespace DefaultNamespace {
 
         private void OnDestroy() {
             GameFrameworkCore.ShutDown();
-            Log.Info($"{nameof(GameFrameworkCore)}: ShutDown.");
+            Log.Info($"{nameof(GameFrameworkCore)} ShutDown.");
         }
 
         private void InitLogHelper() {
