@@ -5,7 +5,7 @@ namespace DefaultNamespace {
     /// 游戏入口。
     /// </summary>
     public partial class GameCore {
-        private static void InitCustomComponents() {
+        private void InitCustomComponents() {
         }
     }
 }

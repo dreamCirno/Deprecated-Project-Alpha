@@ -1,5 +1,6 @@
 ﻿using CirnoFramework.Runtime;
 using CirnoFramework.Runtime.Resource;
+using CirnoFramework.Runtime.Resource.GameObjectPool;
 using CirnoFramework.Runtime.XLua;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace DefaultNamespace {
     /// <summary>
     /// 游戏入口。
     /// </summary>
-    public partial class GameCore {
+    public partial class GameCore : MonoBehaviour {
         public static ResourceManager Resource { get; private set; }
 
         public static XLuaManager XLua { get; private set; }
@@ -112,9 +113,13 @@ namespace DefaultNamespace {
         // /// </summary>
         // public static WebRequestComponent WebRequest { get; private set; }
 
-        private static void InitBuiltinComponents() {
+        private void InitBuiltinComponents() {
             Resource = GameFrameworkCore.GetModule<ResourceManager>();
             XLua = GameFrameworkCore.GetModule<XLuaManager>();
+
+            GameObject gameObjectPoolHelper = new GameObject("IGameObjectPoolHelper");
+            gameObjectPoolHelper.transform.SetParent(transform);
+            Resource.SetGameObjectPoolHelper(gameObjectPoolHelper.AddComponent<GameObjectPoolHelper>());
 
             GameFrameworkCore.Init();
 
