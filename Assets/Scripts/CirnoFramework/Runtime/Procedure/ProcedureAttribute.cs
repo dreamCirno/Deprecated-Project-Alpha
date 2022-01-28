@@ -5,7 +5,7 @@ namespace CirnoFramework.Runtime.Procedure {
         public ProcedureType StateType { get; private set; }
 
         public ProcedureAttribute(ProcedureType stateType = ProcedureType.Normal) {
-            stateType = stateType;
+            StateType = stateType;
         }
     }
 
