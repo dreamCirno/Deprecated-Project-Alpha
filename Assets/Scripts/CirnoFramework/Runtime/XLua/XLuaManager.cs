@@ -9,11 +9,10 @@ namespace CirnoFramework.Runtime.XLua {
     public class XLuaManager : IGameFrameworkModule, IUpdatable, IFixedUpdatable {
         public LuaEnv LuaEnv { get; private set; }
 
-        public int Priority => 1;
+        public int Priority => 2;
 
         public void OnInit() {
             InitializeLuaEnv();
-            Startup();
         }
 
         public void OnClose() {
