@@ -106,7 +106,7 @@ namespace CirnoFramework.Runtime.Resource {
         #region Implement
 
         public void OnInit() {
-            Asset = new AddressableAssetsHelper();
+            SetResourceHelper(new AddressableAssetsHelper());
             Version = new AddressableVersion();
         }
 
