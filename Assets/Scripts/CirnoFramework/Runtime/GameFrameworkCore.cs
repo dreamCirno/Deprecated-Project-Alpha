@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CirnoFramework.Runtime.Base;
-using UnityEngine;
+using CirnoFramework.Runtime.Utility;
 
 namespace CirnoFramework.Runtime {
     public static class GameFrameworkCore {
@@ -25,9 +25,10 @@ namespace CirnoFramework.Runtime {
         public static void Init() {
             var orderResult = _allGameModules.OrderBy(
                 x => x.Value.Priority);
-            foreach (var module in orderResult) {
-                module.Value.OnInit();
-                Debug.Log($"{module.Value.GetType().Name} OnInit.");
+            foreach (var item in orderResult) {
+                var module = item.Value;
+                module.OnInit();
+                Log.Info($"[Priority: {module.Priority}] - {module.GetType().Name} OnInit.");
             }
         }
 
@@ -63,9 +64,10 @@ namespace CirnoFramework.Runtime {
         /// </summary>
         public static void ShutDown() {
             var orderResult = _allGameModules.OrderBy(x => x.Value.Priority);
-            foreach (var module in orderResult) {
-                module.Value.OnClose();
-                Debug.Log($"{module.Value.GetType().Name} OnClose.");
+            foreach (var item in orderResult) {
+                var module = item.Value;
+                module.OnClose();
+                Log.Info($"[Priority: {module.Priority}] - {module.GetType().Name} OnClose.");
             }
 
             _updatableGameModules.Clear();
