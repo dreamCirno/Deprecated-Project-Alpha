@@ -9,6 +9,7 @@ namespace DefaultNamespace {
     /// 游戏入口。
     /// </summary>
     public partial class GameCore : MonoBehaviour {
+        
         private void Awake() {
             InitLogHelper();
         }

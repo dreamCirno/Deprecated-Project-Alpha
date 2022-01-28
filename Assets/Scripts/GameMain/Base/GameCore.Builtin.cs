@@ -1,4 +1,6 @@
 ﻿using CirnoFramework.Runtime;
+using CirnoFramework.Runtime.Fsm;
+using CirnoFramework.Runtime.Procedure;
 using CirnoFramework.Runtime.Resource;
 using CirnoFramework.Runtime.Resource.GameObjectPool;
 using CirnoFramework.Runtime.XLua;
@@ -12,6 +14,10 @@ namespace DefaultNamespace {
         public static ResourceManager Resource { get; private set; }
 
         public static XLuaManager XLua { get; private set; }
+
+        public static FsmManager Fsm { get; private set; }
+
+        public static ProcedureManager Procedure { get; private set; }
 
         // /// <summary>
         // /// 获取游戏基础组件。
@@ -116,10 +122,8 @@ namespace DefaultNamespace {
         private void InitBuiltinComponents() {
             Resource = GameFrameworkCore.GetModule<ResourceManager>();
             XLua = GameFrameworkCore.GetModule<XLuaManager>();
-
-            GameObject gameObjectPoolHelper = new GameObject("IGameObjectPoolHelper");
-            gameObjectPoolHelper.transform.SetParent(transform);
-            Resource.SetGameObjectPoolHelper(gameObjectPoolHelper.AddComponent<GameObjectPoolHelper>());
+            Fsm = GameFrameworkCore.GetModule<FsmManager>();
+            Procedure = GameFrameworkCore.GetModule<ProcedureManager>();
 
             GameFrameworkCore.Init();
 
