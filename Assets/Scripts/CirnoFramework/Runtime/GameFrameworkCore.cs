@@ -27,8 +27,9 @@ namespace CirnoFramework.Runtime {
                 x => x.Value.Priority);
             foreach (var item in orderResult) {
                 var module = item.Value;
+                Log.Info($"[Priority: {module.Priority}] - {module.GetType().Name} Start Init.");
                 module.OnInit();
-                Log.Info($"[Priority: {module.Priority}] - {module.GetType().Name} OnInit.");
+                Log.Info($"[Priority: {module.Priority}] - {module.GetType().Name} Initialized.");
             }
         }
 
