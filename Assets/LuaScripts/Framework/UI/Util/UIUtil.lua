@@ -15,20 +15,16 @@ local function FindComponent(trans, ctype, path)
     assert(ctype ~= nil)
 
     local targetTrans = trans
-    print("FindComponent", trans, ctype)
     if path ~= nil and type(path) == "string" and #path > 0 then
         targetTrans = trans:Find(path)
     end
     if targetTrans == nil then
-        print("return nil")
         return nil
     end
     local cmp = targetTrans:GetComponent(ctype)
     if cmp ~= nil then
-        print("return1", cmp)
         return cmp
     end
-    print("return2", trans:GetComponentInChildren(ctype))
     return targetTrans:GetComponentInChildren(ctype)
 end
 

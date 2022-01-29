@@ -18,8 +18,6 @@ local function OnCreate(self, layer)
     self.gameObject.layer = 5
 
     -- canvas
-    print("1111111111111111111", self.transform:GetComponent(typeof(CS.UnityEngine.Transform)))
-
     self.unity_canvas = UIUtil.FindComponent(self.transform, typeof(CS.UnityEngine.Canvas))
     if IsNull(self.unity_canvas) then
         self.unity_canvas = self.gameObject:AddComponent(typeof(CS.UnityEngine.Canvas))
