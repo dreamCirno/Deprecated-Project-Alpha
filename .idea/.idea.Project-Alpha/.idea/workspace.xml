@@ -2,35 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b3a137-1978-4c61-9a22-f1aa03b44abf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/Gen.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/BuildInInit.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/BuildInInit.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Utility/GameUtility.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Utility/GameUtility.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-Alpha/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-Alpha/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdParty.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/CHANGELOG.txt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/CHANGELOG.txt.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Editor.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/Editor.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Resources.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/Resources.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Tencent.XLua.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Tencent.XLua.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game Launcher.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Launcher.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Editor/CirnoFramework.Editor.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Editor/CirnoFramework.Editor.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/CirnoFramework.Runtime.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/CirnoFramework.Runtime.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/XLua.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/XLua/XLuaManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/XLuaManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/XLua/XLuaManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/XLuaManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Tests/CirnoFramework.Tests.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Tests/CirnoFramework.Tests.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Builtin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Builtin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameMain/Procedure/Impl/ProcedureLaunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameMain/Procedure/Impl/ProcedureLaunch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/XLua/Editor/XLuaGenerateConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/XLua/Editor/XLuaGenerateConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Gen.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +25,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/09/03755ee6/GameFrameworkLog.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/XLua/Extensions/UnityEngineObjectExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/XLua/Editor/XLuaGenerateConfig.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/3rdParty/XLua/Gen/CirnoFramework_Runtime_Resource_GameObjectPool_Base_IGameObjectPoolHelperWrap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Builtin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/f2/d5b770b9/LoadAssetCallbacks.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.18.19/Runtime/ResourceLocators/IResourceLocator.cs" root0="SKIP_HIGHLIGHTING" />
@@ -118,7 +89,7 @@
       <workItem from="1642752930342" duration="7887000" />
       <workItem from="1643003899684" duration="1973000" />
       <workItem from="1643184185404" duration="23404000" />
-      <workItem from="1643336273466" duration="23767000" />
+      <workItem from="1643336273466" duration="24244000" />
     </task>
     <servers />
   </component>
