@@ -79,6 +79,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Lua
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: eaf9352288edf384aad76b6061b51438, type: 2}

@@ -2,20 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b3a137-1978-4c61-9a22-f1aa03b44abf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/GameObjectPool.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/GameObjectPool/Base.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/GameObjectPool/Base/IGameObjectPoolHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/GameObjectPool/Base/IGameObjectPoolHelper.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/GameObjectPool/GameObjectPoolHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/GameObjectPool/GameObjectPoolHelper.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/Gen.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/BuildInInit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/BuildInInit.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Utility/GameUtility.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Utility/GameUtility.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project-Alpha/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project-Alpha/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdParty.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/CHANGELOG.txt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/CHANGELOG.txt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Editor.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/Editor.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Resources.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3rdParty/XLua/Resources.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Tencent.XLua.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/3rdParty/XLua/Tencent.XLua.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Resource/ResourceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Launcher.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Launcher.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LuaScripts/GameMain.lua.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Editor/CirnoFramework.Editor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Editor/CirnoFramework.Editor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/CirnoFramework.Runtime.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/CirnoFramework.Runtime.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/XLua.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/XLua/XLuaManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/XLuaManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/XLua/XLuaManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Runtime/Lua/XLuaManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Tests/CirnoFramework.Tests.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CirnoFramework/Tests/CirnoFramework.Tests.asmdef.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Builtin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Builtin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Custom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Custom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameMain/Procedure/Impl/ProcedureLaunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameMain/Procedure/Impl/ProcedureLaunch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/XLua/Editor/XLuaGenerateConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/XLua/Editor/XLuaGenerateConfig.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,15 +51,19 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/50/0ca297f1/IFsm`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/09/03755ee6/GameFrameworkLog.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/XLua/Extensions/UnityEngineObjectExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/XLua/Editor/XLuaGenerateConfig.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/3rdParty/XLua/Gen/CirnoFramework_Runtime_Resource_GameObjectPool_Base_IGameObjectPoolHelperWrap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.Builtin.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../xLua/Assets/XLua/Editor/ExampleConfig.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/14/cb29e65c/Utility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/f2/d5b770b9/LoadAssetCallbacks.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.18.19/Runtime/ResourceLocators/IResourceLocator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.18.19/Runtime/Addressables.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/3c/e5914e7c/IDataNode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.scriptablebuildpipeline@1.19.2/Editor/Shared/BuildTasksRunner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/7d/2eb82d20/GameFrameworkEntry.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameMain/Base/GameCore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../xLua/Assets/XLua/Editor/ExampleConfig.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/14/cb29e65c/Utility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.18.19/Runtime/Addressables.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ca3005014ab44423a8eae080265b967865800/b8/86688569/IProcedureManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="24001W3rwUtZ0Ad016eAZYly6mN" />
@@ -62,6 +81,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -75,10 +95,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="43560">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="25380">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="43560" />
+      <option name="pid" value="25380" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -98,6 +118,7 @@
       <workItem from="1642752930342" duration="7887000" />
       <workItem from="1643003899684" duration="1973000" />
       <workItem from="1643184185404" duration="23404000" />
+      <workItem from="1643336273466" duration="23767000" />
     </task>
     <servers />
   </component>

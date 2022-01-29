@@ -14,6 +14,7 @@ namespace GameMain.Procedure.Impl {
             base.OnEnter(procedureOwner);
 
             InitGameObjectPool();
+            StartupXLua();
 
             Log.Info("ProcedureLaunch OnEnter");
         }
@@ -22,6 +23,10 @@ namespace GameMain.Procedure.Impl {
             var gameObjectPoolHelper = new GameObject("GameObject PoolHelper");
             Object.DontDestroyOnLoad(gameObjectPoolHelper);
             GameCore.Resource.SetGameObjectPoolHelper(gameObjectPoolHelper.AddComponent<GameObjectPoolHelper>());
+        }
+
+        private void StartupXLua() {
+            GameCore.XLua.Startup();
         }
     }
 }
