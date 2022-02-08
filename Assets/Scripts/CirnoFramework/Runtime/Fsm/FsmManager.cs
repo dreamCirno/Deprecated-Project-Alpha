@@ -5,7 +5,6 @@ using GameFramework.Fsm;
 
 namespace CirnoFramework.Runtime.Fsm {
     public sealed class FsmManager : IGameFrameworkModule {
-
         private IFsmManager m_FsmManager = null;
 
         public int Priority {
@@ -13,10 +12,12 @@ namespace CirnoFramework.Runtime.Fsm {
         }
 
         public void OnInit() {
-            
         }
 
         public void OnClose() {
+        }
+
+        public void OnRestart() {
         }
 
         /// <summary>
