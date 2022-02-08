@@ -10,6 +10,12 @@ namespace XLua.Editor {
             (from type in Assembly.Load("Assembly-CSharp").GetTypes()
                 select type).ToList();
 
+        [CSharpCallLua] public static List<Type> CSharpCallLua = new List<Type>() {
+            typeof(Action),
+            typeof(Action<float>),
+            typeof(Action<float, float>),
+        };
+
         /// <summary>
         /// 黑名单
         /// </summary>
