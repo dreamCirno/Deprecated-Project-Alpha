@@ -13,6 +13,8 @@ namespace CirnoFramework.Runtime {
 
         private static readonly List<IUpdatable> _updatableGameModules = new List<IUpdatable>();
 
+        private static readonly List<ILateUpdatable> _lateUpdatableGameModules = new List<ILateUpdatable>();
+
         private static readonly List<IFixedUpdatable> _fixedUpdatablesGameModules = new List<IFixedUpdatable>();
 
         #endregion
@@ -39,6 +41,12 @@ namespace CirnoFramework.Runtime {
         public static void Update() {
             foreach (var module in _updatableGameModules) {
                 module.OnUpdate();
+            }
+        }
+
+        public static void LateUpdate() {
+            foreach (var module in _lateUpdatableGameModules) {
+                module.OnLateUpdate();
             }
         }
 
