@@ -17,7 +17,7 @@ namespace CirnoFramework.Runtime.Fsm {
         public void OnClose() {
         }
 
-        public void OnRestart() {
+        public void OnDispose() {
         }
 
         /// <summary>

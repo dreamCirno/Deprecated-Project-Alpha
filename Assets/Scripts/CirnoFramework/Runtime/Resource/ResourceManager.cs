@@ -118,7 +118,7 @@ namespace CirnoFramework.Runtime.Resource {
             _gameObjectPoolHelper?.DestroyAll();
         }
 
-        public void OnRestart() {
+        public void OnDispose() {
         }
 
         #endregion

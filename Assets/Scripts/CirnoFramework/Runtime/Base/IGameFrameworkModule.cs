@@ -6,6 +6,6 @@
         int Priority { get; }
         void OnInit();
         void OnClose();
-        void OnRestart();
+        void OnDispose();
     }
 }

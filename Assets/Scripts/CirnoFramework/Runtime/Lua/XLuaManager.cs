@@ -17,12 +17,25 @@ namespace CirnoFramework.Runtime.Lua {
         public void OnInit() {
             InitializeLuaEnv();
             LoadScript(CommonMainScriptName);
+            LuaUpdater.Instance.OnInit(LuaEnv);
         }
 
         public void OnClose() {
         }
 
-        public void OnRestart() {
+        public void OnDispose() {
+            StopHotfix();
+            LuaUpdater.Instance.OnDispose();
+            if (LuaEnv != null) {
+                try {
+                    LuaEnv.Dispose();
+                    LuaEnv = null;
+                }
+                catch (System.Exception ex) {
+                    string msg = $"xLua exception : {ex.Message}\n {ex.StackTrace}";
+                    Log.Error(msg);
+                }
+            }
         }
 
         public void OnUpdate() {
