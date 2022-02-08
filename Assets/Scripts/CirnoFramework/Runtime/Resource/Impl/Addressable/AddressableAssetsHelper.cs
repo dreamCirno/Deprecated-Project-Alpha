@@ -120,9 +120,6 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
             if (!_objectAsync.ContainsKey(assetName)) {
                 _objectAsync.Add(assetName, @object);
             }
-            else {
-                Log.Error($"The same resource file was loaded earlier : {assetName}");
-            }
         }
 
         public void OnUpdate() {
