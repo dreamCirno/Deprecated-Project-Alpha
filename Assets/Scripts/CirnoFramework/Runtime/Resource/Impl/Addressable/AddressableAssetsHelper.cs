@@ -11,12 +11,16 @@ using Object = UnityEngine.Object;
 
 namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
     public class AddressableAssetsHelper : IAssetsHelper {
+        public bool IsProgressRunning { get; private set; }
+        public List<string> AllAssetPaths { get; }
+
         private Dictionary<string, AsyncOperationHandle<SceneInstance>> _sceneInstanceAsync =
             new Dictionary<string, AsyncOperationHandle<SceneInstance>>();
 
         private Dictionary<string, Object> _objectAsync = new Dictionary<string, Object>();
 
-        public List<string> AllAssetPaths { get; }
+        // 逻辑层正在等待的 asset 加载异步句柄
+        private List<AsyncOperationHandle> _processingAssetAsyncList = new List<AsyncOperationHandle>();
 
         public void SetResource(Action callback) {
             callback?.Invoke();
@@ -31,7 +35,9 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
         }
 
         public void LoadAsset<T>(string assetName, Action<T> callback) where T : Object {
-            Addressables.LoadAssetAsync<T>(assetName).Completed += (handle) => {
+            var handle = Addressables.LoadAssetAsync<T>(assetName);
+            _processingAssetAsyncList.Add(handle);
+            handle.Completed += (handle) => {
                 var @object = handle.Result;
                 CheckAsset(assetName, @object);
                 callback?.Invoke(@object);
@@ -116,6 +122,20 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
             }
             else {
                 Log.Error($"The same resource file was loaded earlier : {assetName}");
+            }
+        }
+
+        public void OnUpdate() {
+            OnProcessingAssetAsyncLoader();
+        }
+
+        void OnProcessingAssetAsyncLoader() {
+            for (int i = _processingAssetAsyncList.Count - 1; i >= 0; i--) {
+                var asyncOp = _processingAssetAsyncList[i];
+                if (asyncOp.IsDone) {
+                    Log.Info($"{asyncOp}: IsDone");
+                    _processingAssetAsyncList.RemoveAt(i);
+                }
             }
         }
     }

@@ -111,6 +111,7 @@ namespace CirnoFramework.Runtime.Resource {
         }
 
         public void OnUpdate() {
+            Asset?.OnUpdate();
         }
 
         public void OnClose() {

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using CirnoFramework.Runtime.Base;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CirnoFramework.Runtime.Resource.Base {
-    public interface IAssetsHelper {
+    public interface IAssetsHelper : IUpdatable {
+        bool IsProgressRunning { get; }
+
         /// <summary>
         /// 所有的资源路径 全小写
         /// </summary>
