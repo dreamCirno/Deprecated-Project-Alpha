@@ -8,6 +8,7 @@ namespace CirnoFramework.Runtime.Lua {
     public class XLuaManager : IGameFrameworkModule, IUpdatable, IFixedUpdatable {
         private const string CommonMainScriptName = "Common.Main";
         private const string GameMainScriptName = "GameMain";
+        private const string HotfixMainScriptName = "XLua.HotfixMain";
 
         public LuaEnv LuaEnv { get; private set; }
 
@@ -15,9 +16,13 @@ namespace CirnoFramework.Runtime.Lua {
 
         public void OnInit() {
             InitializeLuaEnv();
+            LoadScript(CommonMainScriptName);
         }
 
         public void OnClose() {
+        }
+
+        public void OnRestart() {
         }
 
         public void OnUpdate() {
@@ -41,6 +46,7 @@ namespace CirnoFramework.Runtime.Lua {
         /// </summary>
         /// <param name="scriptContent">脚本内容</param>
         public void SafeDoString(string scriptContent) {
+            Log.Info($"SafeDoString: {scriptContent}");
             try {
                 LuaEnv?.DoString(scriptContent);
             }
@@ -58,6 +64,32 @@ namespace CirnoFramework.Runtime.Lua {
             LoadScript(scriptName);
         }
 
+
+        public void StartHotfix(bool restart = false) {
+            if (LuaEnv == null) {
+                return;
+            }
+
+            if (restart) {
+                StopHotfix();
+                ReloadScript(HotfixMainScriptName);
+            }
+            else {
+                LoadScript(HotfixMainScriptName);
+            }
+
+            SafeDoString("HotfixMain.Start()");
+        }
+
+        public void StopHotfix() {
+            SafeDoString("HotfixMain.Stop()");
+        }
+
+        public void StartGame() {
+            LoadScript(GameMainScriptName);
+            SafeDoString($"{GameMainScriptName}.Start()");
+        }
+
         #endregion
 
         private void InitializeLuaEnv() {
@@ -67,11 +99,6 @@ namespace CirnoFramework.Runtime.Lua {
             LuaEnv.AddBuildin("pb", Lua.LoadPb);
             // 注册 RapidJson
             LuaEnv.AddBuildin("rapidjson", Lua.LoadRapidJson);
-        }
-
-        public void Startup() {
-            LoadScript(CommonMainScriptName);
-            LoadScript(GameMainScriptName);
         }
 
         /// <summary>

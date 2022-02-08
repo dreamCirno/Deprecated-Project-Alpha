@@ -57,6 +57,9 @@ namespace CirnoFramework.Runtime.Procedure {
         public void OnClose() {
         }
 
+        public void OnRestart() {
+        }
+
         private IProcedureManager m_ProcedureManager = null;
         private ProcedureBase m_EntranceProcedure = null;
 

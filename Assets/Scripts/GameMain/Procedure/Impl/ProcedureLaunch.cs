@@ -1,7 +1,6 @@
 ﻿using CirnoFramework.Runtime.Procedure;
 using CirnoFramework.Runtime.Resource.GameObjectPool;
 using CirnoFramework.Runtime.Utility;
-using DefaultNamespace;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
 using UnityEngine;
@@ -26,7 +25,8 @@ namespace GameMain.Procedure.Impl {
         }
 
         private void StartupXLua() {
-            GameCore.XLua.Startup();
+            GameCore.XLua.StartHotfix();
+            GameCore.XLua.StartGame();
         }
     }
 }

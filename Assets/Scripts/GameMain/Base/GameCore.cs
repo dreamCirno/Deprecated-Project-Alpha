@@ -4,41 +4,43 @@ using CirnoFramework.Runtime.Utility;
 using GameFramework;
 using UnityEngine;
 
-namespace DefaultNamespace {
-    /// <summary>
-    /// 游戏入口。
-    /// </summary>
-    public partial class GameCore : MonoBehaviour {
-        
-        private void Awake() {
-            InitLogHelper();
-        }
+/// <summary>
+/// 游戏入口。
+/// </summary>
+public partial class GameCore : MonoBehaviour {
+    private void Awake() {
+        DontDestroyOnLoad(gameObject);
+        InitLogHelper();
+    }
 
-        private void Start() {
-            InitBuiltinComponents();
-            InitCustomComponents();
-        }
+    private void Start() {
+        InitBuiltinComponents();
+        InitCustomComponents();
+    }
 
-        private void Update() {
-            GameFrameworkCore.Update();
-        }
+    private void Update() {
+        GameFrameworkCore.Update();
+    }
 
-        private void FixedUpdate() {
-            GameFrameworkCore.FixedUpdate();
-        }
+    private void LateUpdate() {
+        GameFrameworkCore.LateUpdate();
+    }
 
-        private void OnDestroy() {
-            GameFrameworkCore.ShutDown();
-            Log.Info($"{nameof(GameFrameworkCore)} ShutDown.");
-        }
+    private void FixedUpdate() {
+        GameFrameworkCore.FixedUpdate();
+    }
 
-        private void InitLogHelper() {
-            var logHelperType = typeof(DefaultLogHelper);
+    private void OnDestroy() {
+        GameFrameworkCore.ShutDown();
+        Log.Info($"{nameof(GameFrameworkCore)} ShutDown.");
+    }
 
-            GameFrameworkLog.ILogHelper logHelper =
-                (GameFrameworkLog.ILogHelper) Activator.CreateInstance(logHelperType);
+    private void InitLogHelper() {
+        var logHelperType = typeof(DefaultLogHelper);
 
-            GameFrameworkLog.SetLogHelper(logHelper);
-        }
+        GameFrameworkLog.ILogHelper logHelper =
+            (GameFrameworkLog.ILogHelper) Activator.CreateInstance(logHelperType);
+
+        GameFrameworkLog.SetLogHelper(logHelper);
     }
 }
