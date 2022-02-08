@@ -133,7 +133,6 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
             for (int i = _processingAssetAsyncList.Count - 1; i >= 0; i--) {
                 var asyncOp = _processingAssetAsyncList[i];
                 if (asyncOp.IsDone) {
-                    Log.Info($"{asyncOp}: IsDone");
                     _processingAssetAsyncList.RemoveAt(i);
                 }
             }
