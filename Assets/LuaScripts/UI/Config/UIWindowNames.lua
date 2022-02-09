@@ -15,9 +15,6 @@ local UIWindowNames = {
 	UITestMain = "UITestMain",
 	-- BattleMain
 	UIBattleMain = "UIBattleMain",
-	-- 人物名片
-	UIBoardPlayer = "UIBoardPlayer",
-	UIBoardNPC = "UIBoardNPC",
 }
 
 return ConstClass("UIWindowNames", UIWindowNames)

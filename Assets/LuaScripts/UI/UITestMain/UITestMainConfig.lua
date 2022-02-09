@@ -7,10 +7,9 @@
 local UITestMain = {
 	Name = UIWindowNames.UITestMain,
 	Layer = UILayers.BackgroudLayer,
-	Model = nil,
-	Ctrl = require "UI.UITestMain.Controller.UITestMainCtrl",
 	View = require "UI.UITestMain.View.UITestMainView",
-	PrefabPath = "UI/Prefabs/UIMain/UITestMain.prefab",
+	ViewModel = require "UI.UITestMain.ViewModel.UITestMainViewModel",
+	PrefabPath = "UI/Prefabs/View/UITestMain.prefab",
 }
 
 return {
