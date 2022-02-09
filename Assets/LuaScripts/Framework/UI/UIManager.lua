@@ -62,20 +62,12 @@ local function __init(self)
 		return layers[lkey].OrderInLayer < layers[rkey].OrderInLayer
 	end, function(index, layer)
 		assert(self.layers[layer.Name] == nil, "Aready exist layer : "..layer.Name)
-
-		if(layer ~= UILayers.TopLayer)then
-			local go = CS.UnityEngine.GameObject(layer.Name)
-			local trans = go.transform
-			trans:SetParent(self.transform)
-		end
-
+		local go = CS.UnityEngine.GameObject(layer.Name)
+		local trans = go.transform
+		trans:SetParent(self.transform)
 		local new_layer = UILayer.New(self, layer.Name)
 		new_layer:OnCreate(layer)
 		self.layers[layer.Name] = new_layer
-
-		if(layer == UILayers.TopLayer)then
-			new_layer.transform:SetAsLastSibling()
-		end
 	end)
 end
 
@@ -119,16 +111,15 @@ local function InitWindow(self, ui_name, window)
 	
 	window.Name = ui_name
 	if self.keep_model[ui_name] then
-		window.Model = self.keep_model[ui_name]
-	elseif config.Model then
-		window.Model = config.Model.New(ui_name)
+		window.ViewModel = self.keep_model[ui_name]
+	elseif config.ViewModel then
+		window.ViewModel = config.ViewModel.New(ui_name)
 	end
-	if config.Ctrl then
-		window.Ctrl = config.Ctrl.New(window.Model)
-	end
+
 	if config.View then
-		window.View = config.View.New(layer, window.Name, window.Model, window.Ctrl)
+		window.View = config.View.New(layer, window.Name, window.ViewModel)
 	end
+
 	window.Active = false
 	window.Layer = layer
 	window.PrefabPath = config.PrefabPath
@@ -137,18 +128,26 @@ local function InitWindow(self, ui_name, window)
 	return window
 end
 
+local function SetBackGround(self,window)
+	if IsNull(window.View) or IsNull( window.View.gameObject)then
+		return
+	end
+	local uiGo = window.View.gameObject
+	uiGo:SetActive(false)
+end
+
 -- 激活窗口
 local function ActivateWindow(self, target, ...)
 	assert(target)
 	assert(target.IsLoading == false, "You can only activate window after prefab locaded!")
-	target.Model:Activate(...)
+	target.ViewModel:Activate(...)
 	target.View:SetActive(true)
 	self:Broadcast(UIMessageNames.UIFRAME_ON_WINDOW_OPEN, target)
 end
 
 -- 反激活窗口
 local function Deactivate(self, target)
-	target.Model:Deactivate()
+	target.ViewModel:Deactivate()
 	target.View:SetActive(false)
 	self:Broadcast(UIMessageNames.UIFRAME_ON_WINDOW_CLOSE, target)
 end
@@ -156,8 +155,7 @@ end
 -- 打开窗口：私有，必要时准备资源
 local function InnerOpenWindow(self, target, ...)
 	assert(target)
-	assert(target.Model)
-	assert(target.Ctrl)
+	assert(target.ViewModel)
 	assert(target.View)
 	assert(target.Active == false, "You should close window before open again!")
 	
@@ -192,8 +190,7 @@ end
 -- 关闭窗口：私有
 local function InnerCloseWindow(self, target)
 	assert(target)
-	assert(target.Model)
-	assert(target.Ctrl)
+	assert(target.ViewModel)
 	assert(target.View)
 	if target.Active then
 		Deactivate(self, target)
@@ -306,11 +303,10 @@ local function InnerDestroyWindow(self, ui_name, target, include_keep_model)
 	GameObjectPool:GetInstance():RecycleGameObject(self.windows[ui_name].PrefabPath, target.View.gameObject)
 	if include_keep_model then
 		self.keep_model[ui_name] = nil
-		InnerDelete(target.Model)
+		InnerDelete(target.ViewModel)
 	elseif not self.keep_model[ui_name] then
-		InnerDelete(target.Model)
+		InnerDelete(target.ViewModel)
 	end
-	InnerDelete(target.Ctrl)
 	InnerDelete(target.View)
 	self.windows[ui_name] = nil
 end
@@ -358,8 +354,9 @@ end
 local function SetKeepModel(self, ui_name, keep)
 	local target = self:GetWindow(ui_name)
 	assert(target, "Try to keep a model that window does not exist: "..ui_name)
+
 	if keep then
-		self.keep_model[target.Name] = target.Model
+		self.keep_model[target.Name] = target.ViewModel
 	else
 		self.keep_model[target.Name] = nil
 	end
@@ -484,7 +481,40 @@ end
 local function WaitForTipResponse(self)
 	local ui_name = UIWindowNames.UINoticeTip
 	local window = self:WaitForViewCreated(ui_name)
-	return window.Model:WaitForResponse()
+	return window.ViewModel:WaitForResponse()
+end
+
+-- 获取层级
+local function GetLayer(self,layer)
+	return self.layers[layer]
+end
+
+local function LeaveSceneSave(self,scene_name)
+	if self.scene_window_stack == nil then
+		self.scene_window_stack = {}
+	end
+	self.scene_window_stack[scene_name] = GetLastBgWindowIndexInWindowStack(self)
+end
+
+-- 打开最后一个场景对应界面
+local function OpenLastLeaveSceneWindow(self,scene_name)
+	if self.scene_window_stack ~= nil and self.scene_window_stack[scene_name] ~= nil then
+		local index = self.scene_window_stack[scene_name]
+		if index > 0 then
+			UIManager:GetInstance():OpenWindow(self.__window_stack[index])
+			return true
+		end
+	end
+	return false
+end
+
+--是否是Top窗口
+local function CheckWindowTop(self,name)
+	if GetWindow(self,name,true,true) ~= nil then
+		return self.__window_stack[#self.__window_stack] == name
+	else
+		return false
+	end
 end
 
 -- 析构函数
@@ -525,7 +555,11 @@ UIManager.OpenThreeButtonTip = OpenThreeButtonTip
 UIManager.CloseTip = CloseTip
 UIManager.WaitForViewCreated = WaitForViewCreated
 UIManager.WaitForTipResponse = WaitForTipResponse
-UIManager.GetTipLastClickIndex = GetTipLastClickIndex
+UIManager.OpenLastLeaveSceneWindow = OpenLastLeaveSceneWindow
+UIManager.GetLayer = GetLayer
+UIManager.LeaveSceneSave = LeaveSceneSave
+UIManager.SetBackGround = SetBackGround
+UIManager.CheckWindowTop = CheckWindowTop
 UIManager.__delete = __delete
 
 return UIManager;

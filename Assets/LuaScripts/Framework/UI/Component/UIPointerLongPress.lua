@@ -12,13 +12,45 @@ local UIPointerLongPress = BaseClass("UIPointerLongPress", UIBaseContainer)
 local base = UIBaseContainer
 
 -- 创建
-local function OnCreate(self, relative_path)
+local function OnCreate(self,binder,property_name, relative_path)
 	base.OnCreate(self)
 	-- Unity侧原生组件
 	self.unity_uibutton = UIUtil.FindComponent(self.transform, typeof(CS.UIPointerLongPress), relative_path)
 	-- 记录点击回调
 	self.__onclick = nil
 	self.__onpress = nil
+	
+	if IsNull(self.unity_uibutton) and IsNull(self.gameObject) then
+		self.gameObject = self.unity_uibutton.gameObject
+		self.transform = self.unity_uibutton.transform
+	end
+
+	if(binder == nil) then return end
+	--绑定事件
+	binder:RegisterEvent(function(viewModel, property)
+
+		local onPress = property['OnPress']
+		if(onPress ~= nil) then
+			self:SetOnPress(function ()
+				onPress()
+			end)
+		end
+		local onClick = property['OnClick']
+		if(onClick ~= nil) then
+			self:SetOnClick(function ()
+				onClick()
+			end)
+		end
+
+	end, function()
+		if self.__onPress ~= nil then
+			self.unity_uibutton.onLongPress:RemoveListener(self.__onPress)
+		end
+		if self.__onclick ~= nil then
+			self.unity_uibutton.onClick:RemoveListener(self.__onclick)
+		end
+	end, property_name)
+
 end
 
 -- 点击回调
@@ -38,7 +70,7 @@ local function OnDestroy(self)
 		self.unity_uibutton.onClick:RemoveListener(self.__onclick)
 	end
 	if self.__onpress ~= nil then
-		self.unity_uibutton.onClick:RemoveListener(self.__onpress)
+		self.unity_uibutton.onLongPress:RemoveListener(self.__onpress)
 	end
 	self.unity_uibutton = nil
 	self.__onclick = nil

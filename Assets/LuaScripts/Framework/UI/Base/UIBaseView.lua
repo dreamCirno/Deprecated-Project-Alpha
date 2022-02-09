@@ -14,22 +14,17 @@ local base = UIBaseContainer
 
 -- 构造函数：必须把基类需要的所有参数列齐---即使在这里不用，提高代码可读性
 -- 子类别再写构造函数，初始化工作放OnCreate
-local function __init(self, holder, var_arg, model, ctrl)
-	assert(model ~= nil)
-	assert(ctrl ~= nil)
-	self.ctrl = ctrl
-	-- 强制不能直接写Model层
-	if Config.Debug then
-		self.model = setmetatable({}, {
-			__index = model,
-			__newindex = function(tb, key, value)
-				error("You can't write model derectly!", 2)
-			end
-		})
-	else 
-		self.model = model
+local function __init(self, holder, var_arg, viewModel)
+	assert(viewModel ~= nil)
+
+	-- ViewModel
+	self.Binder = PropertyBinder.New(self)
+	self.viewModelProperty = BindableProperty.New()
+
+	if(viewModel~=nil) then
+		self.viewModelProperty.Value = viewModel
 	end
-	
+
 	-- 窗口画布
 	self.canvas = nil
 	-- 窗口基础order，窗口内添加的其它canvas设置的order都以它做偏移
@@ -48,36 +43,41 @@ local function OnCreate(self)
 	self.rectTransform.offsetMin = Vector2.zero
 	self.rectTransform.localScale = Vector3.one
 	self.rectTransform.localPosition = Vector3.zero
+
+	table.insert(self.viewModelProperty.OnValueChanged, handlerEx(self.OnBindingContextChanged, self))
+end
+
+local function BindAll(self)
+	self.Binder:Bind(self.viewModelProperty.Value)
+end
+
+-- Binding 上下文改变时触发
+local function OnBindingContextChanged(self,oldValue, newValue)
+
+	if oldValue~= nil then self.Binder:Unbind(oldValue) end
+	if newValue~= nil then self.Binder:Bind(newValue) end
+
+end
+
+-- 修改viewModel
+local function SetBindingContext(self, viewModel)
+	if viewModel~=nil then
+		self.viewModelProperty.Value = viewModel
+	end
+end
+
+-- 获取viewModel
+local function GetBindingContext(self)
+	return self.viewModelProperty.Value
 end
 
 -- 打开：窗口显示
 local function OnEnable(self)
 	self.base_order = self.holder:PopWindowOder()
+
 	base.OnEnable(self)
-	self:OnAddListener()
 end
 
--- 注册消息
-local function OnAddListener(self)
-end
-
--- 注销消息
-local function OnRemoveListener(self)
-end
-
-local function AddCallback(keeper, msg_name, callback)
-	assert(callback ~= nil)
-	keeper[msg_name] = callback
-end
-
-local function GetCallback(keeper, msg_name)
-	return keeper[msg_name]
-end
-
-local function RemoveCallback(keeper, msg_name, callback)
-	assert(callback ~= nil)
-	keeper[msg_name] = nil
-end
 
 -- 注册UI数据监听事件，别重写
 local function AddUIListener(self, msg_name, callback)
@@ -95,7 +95,6 @@ end
 
 -- 关闭：窗口隐藏
 local function OnDisable(self)
-	self:OnRemoveListener()
 	base.OnDisable(self)
 	self.holder:PushWindowOrder()
 end
@@ -105,20 +104,26 @@ local function OnDestroy(self)
 	for k,v in pairs(self.__ui_callback) do
 		self:RemoveUIListener(k, v)
 	end
-	self.model = nil
-	self.ctrl = nil
+
 	self.__ui_callback = nil
+
+	self.Binder = nil
+	table.remove_value(self.viewModelProperty.OnValueChanged, handlerEx(self.OnBindingContextChanged, self))
+	self.viewModelProperty = nil
+
 	base.OnDestroy(self)
 end
 
 UIBaseView.__init = __init
 UIBaseView.OnCreate = OnCreate
 UIBaseView.OnEnable = OnEnable
-UIBaseView.OnAddListener = OnAddListener
-UIBaseView.OnRemoveListener = OnRemoveListener
 UIBaseView.OnDisable = OnDisable
 UIBaseView.AddUIListener = AddUIListener
 UIBaseView.RemoveUIListener = RemoveUIListener
 UIBaseView.OnDestroy = OnDestroy
+UIBaseView.SetBindingContext = SetBindingContext
+UIBaseView.GetBindingContext = GetBindingContext
+UIBaseView.OnBindingContextChanged = OnBindingContextChanged
+UIBaseView.BindAll = BindAll
 
 return UIBaseView

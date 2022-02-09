@@ -18,12 +18,17 @@ local function OnCreate(self, relative_path)
 	self.unity_uibutton = UIUtil.FindComponent(self.transform, typeof(CS.UIPointerDownUp), relative_path)
 	-- 记录点击回调
 	self.__onclick = nil
+	
+	if IsNull(self.unity_uibutton) and IsNull(self.gameObject) then
+		self.gameObject = self.unity_uibutton.gameObject
+		self.transform = self.unity_uibutton.transform
+	end
 end
 
 -- 设置回调
 local function SetOnDown(self, ...)
 	self.__ondown = BindCallback(...)
-	self.unity_uibutton.onPressDown:AddListener(self.__ondown)
+	self.unity_uibutton.onClick:AddListener(self.__ondown)
 end
 local function SetOnUp(self, ...)
 	self.__onup = BindCallback(...)
@@ -36,7 +41,7 @@ local function OnDestroy(self)
 		self.unity_uibutton.onPressDown:RemoveListener(self.__ondown)
 	end
 	if self.__onup ~= nil then
-		self.unity_uibutton.onPressUp:RemoveListener(self.__onup)
+		self.unity_uibutton.onClick:RemoveListener(self.__onup)
 	end
 	self.unity_uibutton = nil
 	self.__ondown = nil
