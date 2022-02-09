@@ -34,6 +34,12 @@ UserData = require "DataCenter.UserData.UserData"
 -- game config
 LangUtil = require "Config.LangUtil"
 
+-- MVVM
+require "Framework.UI.MVVM.Bindable.BindableProperty"
+require "Framework.UI.MVVM.Bindable.ObservableList"
+require "Framework.UI.MVVM.Bindable.ComputeBindableProperty"
+PropertyBinder = require "Framework.UI.MVVM.PropertyBinder"
+
 -- ui base
 UIUtil = require "Framework.UI.Util.UIUtil"
 UIBaseModel = require "Framework.UI.Base.UIBaseModel"
@@ -41,6 +47,7 @@ UIBaseCtrl = require "Framework.UI.Base.UIBaseCtrl"
 UIBaseComponent = require "Framework.UI.Base.UIBaseComponent"
 UIBaseContainer = require "Framework.UI.Base.UIBaseContainer"
 UIBaseView = require "Framework.UI.Base.UIBaseView"
+UIBaseViewModel = require "Framework.UI.Base.UIBaseViewModel"
 
 -- ui component
 UILayer = require "Framework.UI.Component.UILayer"
@@ -56,19 +63,12 @@ UITabGroup = require "Framework.UI.Component.UITabGroup"
 UIButtonGroup = require "Framework.UI.Component.UIButtonGroup"
 UIWrapGroup = require "Framework.UI.Component.UIWrapGroup"
 UIEffect = require "Framework.UI.Component.UIEffect"
-UIAnimation = require "Framework.UI.Component.UIAnimation"
-
---text mesh pro
-UITextMeshPro = require "Framework.UI.Component.UITextMeshPro"
-UITextMeshProUGUI = require "Framework.UI.Component.UITextMeshProUGUI"
-UITextMeshProInput = require "Framework.UI.Component.UITextMeshProInput"
 
 --ui pointer
 UIPointerClick = require "Framework.UI.Component.UIPointerClick"
 UIPointerDownUp = require "Framework.UI.Component.UIPointerDownUp"
 UIPointerLongPress = require "Framework.UI.Component.UIPointerLongPress"
 UIPointerDoubleClick = require "Framework.UI.Component.UIPointerDoubleClick"
-
 
 -- ui window
 UILayers = require "Framework.UI.UILayers"
@@ -77,7 +77,6 @@ UIManager = require "Framework.UI.UIManager"
 UIMessageNames = require "Framework.UI.Message.UIMessageNames"
 UIWindowNames = require "UI.Config.UIWindowNames"
 UIConfig = require "UI.Config.UIConfig"
-UIBoardManager = require "UI.UIBoard.UIBoardManager"
 
 -- res
 ResourcesManager = require "Framework.Resource.ResourcesManager"
@@ -115,4 +114,3 @@ SceneManager:GetInstance()
 AtlasManager:GetInstance()
 LogicUpdater:GetInstance()
 HallConnector:GetInstance()
-UIBoardManager:GetInstance()
