@@ -8,3 +8,6 @@
 GameObject = CS.UnityEngine.GameObject
 Transform = CS.UnityEngine.Transform
 Camera = CS.UnityEngine.Camera
+
+ResourceManager = CS.GameCore.Resource
+AssetHelper = CS.GameCore.Resource.Asset
