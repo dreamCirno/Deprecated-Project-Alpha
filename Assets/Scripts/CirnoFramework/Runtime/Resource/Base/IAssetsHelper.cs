@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace CirnoFramework.Runtime.Resource.Base {
     public interface IAssetsHelper : IUpdatable {
-        bool IsProgressRunning { get; }
+        bool IsRunning { get; }
 
         /// <summary>
         /// 所有的资源路径 全小写
@@ -34,7 +34,14 @@ namespace CirnoFramework.Runtime.Resource.Base {
         void LoadAssetBundle(string assetBundleName, Action<AssetBundle> callback);
 
         /// <summary>
-        /// 加载资源 -- 异步加载资源
+        /// 同步加载资源
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="assetName"></param>
+        T LoadAsset<T>(string assetName) where T : UnityEngine.Object;
+        
+        /// <summary>
+        /// 异步加载资源
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="assetName"></param>
@@ -43,27 +50,20 @@ namespace CirnoFramework.Runtime.Resource.Base {
         void LoadAsset<T>(string assetName, Action<T> callback) where T : UnityEngine.Object;
 
         /// <summary>
-        /// 加载资源
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="assetName"></param>
-        T LoadAsset<T>(string assetName) where T : UnityEngine.Object;
-
-        /// <summary>
-        /// 加载多个资源
+        /// 同步加载多个资源
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tags"></param>
         /// <returns></returns>
-        T[] FindAssets<T>(List<string> tags) where T : UnityEngine.Object;
+        T[] LoadAssetsAsync<T>(IEnumerable<string> tags) where T : UnityEngine.Object;
 
         /// <summary>
-        /// 加载多个资源
+        /// 异步加载多个资源
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tags"></param>
         /// <param name="callback"></param>
-        void FindAssets<T>(List<string> tags, Action<T[]> callback) where T : UnityEngine.Object;
+        void LoadAssetsAsync<T>(IEnumerable<string> tags, Action<T[]> callback) where T : UnityEngine.Object;
 
         /// <summary>
         /// 卸载资源 -- 取消掉资源计数

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CirnoFramework.Runtime.Resource.Base;
-using CirnoFramework.Runtime.Utility;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,7 +10,7 @@ using Object = UnityEngine.Object;
 
 namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
     public class AddressableAssetsHelper : IAssetsHelper {
-        public bool IsProgressRunning { get; private set; }
+        public bool IsRunning { get; private set; }
         public List<string> AllAssetPaths { get; }
 
         private Dictionary<string, AsyncOperationHandle<SceneInstance>> _sceneInstanceAsync =
@@ -51,7 +50,7 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
             return @object;
         }
 
-        public T[] FindAssets<T>(List<string> tags) where T : Object {
+        public T[] LoadAssetsAsync<T>(IEnumerable<string> tags) where T : Object {
             var handle = Addressables.LoadAssetsAsync<T>(tags, (tObject) => { }, Addressables.MergeMode.Union);
             var resultList = handle.WaitForCompletion();
             T[] result = new T[resultList.Count];
@@ -59,7 +58,7 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
             return result;
         }
 
-        public void FindAssets<T>(List<string> tags, Action<T[]> callback) where T : Object {
+        public void LoadAssetsAsync<T>(IEnumerable<string> tags, Action<T[]> callback) where T : Object {
             var handle = Addressables.LoadAssetsAsync<T>(tags, (tObject) => { }, Addressables.MergeMode.Union);
             handle.Completed += (resultHandle) => {
                 var resultList = resultHandle.Result;
