@@ -45,6 +45,7 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
 
         public T LoadAsset<T>(string assetName) where T : Object {
             var handle = Addressables.LoadAssetAsync<T>(assetName);
+            _processingAssetAsyncList.Add(handle);
             var @object = handle.WaitForCompletion();
             CheckAsset(assetName, @object);
             return @object;
@@ -52,6 +53,7 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
 
         public T[] LoadAssetsAsync<T>(IEnumerable<string> tags) where T : Object {
             var handle = Addressables.LoadAssetsAsync<T>(tags, (tObject) => { }, Addressables.MergeMode.Union);
+            _processingAssetAsyncList.Add(handle);
             var resultList = handle.WaitForCompletion();
             T[] result = new T[resultList.Count];
             resultList.CopyTo(result, 0);
@@ -60,6 +62,7 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
 
         public void LoadAssetsAsync<T>(IEnumerable<string> tags, Action<T[]> callback) where T : Object {
             var handle = Addressables.LoadAssetsAsync<T>(tags, (tObject) => { }, Addressables.MergeMode.Union);
+            _processingAssetAsyncList.Add(handle);
             handle.Completed += (resultHandle) => {
                 var resultList = resultHandle.Result;
                 T[] result = new T[resultList.Count];
