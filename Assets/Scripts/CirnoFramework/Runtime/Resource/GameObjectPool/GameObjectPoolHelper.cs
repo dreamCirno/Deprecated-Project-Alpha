@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CirnoFramework.Runtime.Resource.GameObjectPool.Base;
 using CirnoFramework.Runtime.Utility;
 using UnityEngine;
@@ -48,6 +49,33 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool {
             Initialization(assetName, prefabInfo);
         }
 
+        public void AddPrefabAsync(string assetBundleName, string assetName, PoolPrefabInfo prefabInfo,
+            Action callback) {
+            if (_prefabs.ContainsKey(assetName)) {
+                Log.Debug($"已经存在资源：{assetName}");
+                return;
+            }
+
+            if (prefabInfo.Prefab == null) {
+                // 根据 assetName，直接从 ResourceManager 里面加载
+                GameFrameworkCore.GetModule<ResourceManager>().Asset
+                    .LoadAsset<GameObject>(assetName, o => {
+                        prefabInfo.Prefab = o;
+                        if (prefabInfo.Prefab == null) {
+                            Log.Debug($"无法找到预设资源：{assetName} is null");
+                            return;
+                        }
+
+                        _prefabs[assetName] = prefabInfo;
+                        _spawneds[assetName] = new List<GameObject>();
+
+                        Initialization(assetName, prefabInfo);
+
+                        callback?.Invoke();
+                    });
+            }
+        }
+
         public bool HasPrefab(string assetName) {
             return _prefabs.ContainsKey(assetName);
         }
@@ -72,7 +100,7 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool {
             if (!_despawneds.ContainsKey(assetName)) {
                 // 在没有添加预设的时候，默认添加一个预设
                 AddPrefab("", assetName, new PoolPrefabInfo {
-                     PreloadAmount = 1
+                    PreloadAmount = 1
                 });
             }
 
@@ -89,6 +117,34 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool {
             _spawneds[assetName].Add(gameObject);
 
             return gameObject;
+        }
+
+        /// <summary>
+        /// 异步生成 GameObject
+        /// </summary>
+        /// <param name="assetName"></param>
+        /// <param name="callback"></param>
+        public void SpawnAsync(string assetName, Action<GameObject> callback) {
+            if (!_despawneds.ContainsKey(assetName)) {
+                // 在没有添加预设的时候，默认添加一个预设
+                AddPrefabAsync("", assetName, new PoolPrefabInfo {
+                    PreloadAmount = 1
+                }, () => {
+                    GameObject gameObject;
+                    Queue<GameObject> queueGos = _despawneds[assetName];
+                    if (queueGos.Count > 0) {
+                        gameObject = queueGos.Dequeue();
+                        gameObject.SetActive(true);
+                    }
+                    else {
+                        gameObject = Instantiate(_prefabs[assetName].Prefab, transform, true);
+                    }
+
+                    _spawneds[assetName].Add(gameObject);
+
+                    callback?.Invoke(gameObject);
+                });
+            }
         }
 
         /// <summary>

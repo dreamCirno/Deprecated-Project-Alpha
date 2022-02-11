@@ -1,4 +1,5 @@
-﻿using CirnoFramework.Runtime.Base;
+﻿using System;
+using CirnoFramework.Runtime.Base;
 using CirnoFramework.Runtime.Resource.Base;
 using CirnoFramework.Runtime.Resource.GameObjectPool.Base;
 using CirnoFramework.Runtime.Resource.Impl.Addressable;
@@ -59,6 +60,10 @@ namespace CirnoFramework.Runtime.Resource {
         /// <returns></returns>
         public GameObject Spawn(string assetName) {
             return _gameObjectPoolHelper.Spawn(assetName);
+        }
+
+        public void SpawnAsync(string assetName, Action<GameObject> callback) {
+            _gameObjectPoolHelper.SpawnAsync(assetName, callback);
         }
 
         /// <summary>

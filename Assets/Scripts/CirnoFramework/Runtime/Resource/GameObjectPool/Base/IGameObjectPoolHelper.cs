@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CirnoFramework.Runtime.Resource.GameObjectPool.Base {
     public interface IGameObjectPoolHelper {
@@ -16,6 +17,16 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool.Base {
         void AddPrefab(string assetBundleName, string assetName, PoolPrefabInfo prefabInfo);
 
         /// <summary>
+        /// 异步加载预制信息
+        /// </summary>
+        /// <param name="assetBundleName"></param>
+        /// <param name="assetName"></param>
+        /// <param name="prefabInfo"></param>
+        /// <param name="callback"></param>
+        void AddPrefabAsync(string assetBundleName, string assetName, PoolPrefabInfo prefabInfo,
+            Action callback);
+
+        /// <summary>
         /// 是否包含预设
         /// </summary>
         /// <param name="assetName"></param>
@@ -28,6 +39,13 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool.Base {
         /// <param name="assetName"></param>
         /// <returns></returns>
         GameObject Spawn(string assetName);
+
+        /// <summary>
+        /// 异步生成物体
+        /// </summary>
+        /// <param name="assetName"></param>
+        /// <returns></returns>
+        void SpawnAsync(string assetName, Action<GameObject> callback);
 
         /// <summary>
         /// 销毁物体
