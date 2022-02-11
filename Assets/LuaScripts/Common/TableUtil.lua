@@ -214,6 +214,21 @@ local function dump(tb, dump_metatable, max_level)
 	return _dump(tb, level)
 end
 
+-- 从数组中删除指定值，返回删除的值的个数
+local function removebyvalue(array, value, removeall)
+	local remove_count = 0
+	for i = #array, 1, -1 do
+		if array[i] == value then
+			table.remove(array, i)
+			remove_count = remove_count + 1
+			if not removeall then
+				break
+			end
+		end
+	end
+	return remove_count
+end
+
 table.count = count
 table.length = length
 table.setlen = setlen
@@ -230,3 +245,5 @@ table.filter = filter
 table.choose = choose
 table.circulator = circulator
 table.dump = dump
+table.removebyvalue = removebyvalue
+table.remove_value = removebyvalue
