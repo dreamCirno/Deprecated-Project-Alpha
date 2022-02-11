@@ -71,7 +71,9 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool {
         public GameObject Spawn(string assetName) {
             if (!_despawneds.ContainsKey(assetName)) {
                 // 在没有添加预设的时候，默认添加一个预设
-                AddPrefab("", assetName, new PoolPrefabInfo());
+                AddPrefab("", assetName, new PoolPrefabInfo {
+                     PreloadAmount = 1
+                });
             }
 
             GameObject gameObject;
