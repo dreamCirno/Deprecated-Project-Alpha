@@ -128,7 +128,8 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool {
             if (!_despawneds.ContainsKey(assetName)) {
                 // 在没有添加预设的时候，默认添加一个预设
                 AddPrefabAsync("", assetName, new PoolPrefabInfo {
-                    PreloadAmount = 1
+                    PreloadAmount = 1,
+                    MaxAmount = 100
                 }, () => {
                     GameObject gameObject;
                     Queue<GameObject> queueGos = _despawneds[assetName];
@@ -144,6 +145,9 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool {
 
                     callback?.Invoke(gameObject);
                 });
+            }
+            else {
+                callback(Spawn(assetName));
             }
         }
 
