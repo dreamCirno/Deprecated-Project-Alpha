@@ -59,7 +59,7 @@ namespace CirnoFramework.Runtime.Resource.GameObjectPool {
             if (prefabInfo.Prefab == null) {
                 // 根据 assetName，直接从 ResourceManager 里面加载
                 GameFrameworkCore.GetModule<ResourceManager>().Asset
-                    .LoadAsset<GameObject>(assetName, o => {
+                    .LoadAssetAsync<GameObject>(assetName, o => {
                         prefabInfo.Prefab = o;
                         if (prefabInfo.Prefab == null) {
                             Log.Debug($"无法找到预设资源：{assetName} is null");

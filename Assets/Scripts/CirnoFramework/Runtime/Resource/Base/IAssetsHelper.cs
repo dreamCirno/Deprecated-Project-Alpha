@@ -47,7 +47,7 @@ namespace CirnoFramework.Runtime.Resource.Base {
         /// <param name="assetName"></param>
         /// <param name="callback"></param>
         /// <returns></returns>
-        void LoadAsset<T>(string assetName, Action<T> callback) where T : UnityEngine.Object;
+        void LoadAssetAsync<T>(string assetName, Action<T> callback) where T : UnityEngine.Object;
 
         /// <summary>
         /// 同步加载多个资源
@@ -55,7 +55,7 @@ namespace CirnoFramework.Runtime.Resource.Base {
         /// <typeparam name="T"></typeparam>
         /// <param name="tags"></param>
         /// <returns></returns>
-        T[] LoadAssetsAsync<T>(IEnumerable<string> tags) where T : UnityEngine.Object;
+        T[] LoadAssets<T>(IEnumerable<string> tags) where T : UnityEngine.Object;
 
         /// <summary>
         /// 异步加载多个资源

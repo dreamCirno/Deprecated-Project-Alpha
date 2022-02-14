@@ -33,7 +33,7 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
             throw new NotImplementedException();
         }
 
-        public void LoadAsset<T>(string assetName, Action<T> callback) where T : Object {
+        public void LoadAssetAsync<T>(string assetName, Action<T> callback) where T : Object {
             var handle = Addressables.LoadAssetAsync<T>(assetName);
             _processingAssetAsyncList.Add(handle);
             handle.Completed += (handle) => {
@@ -51,7 +51,7 @@ namespace CirnoFramework.Runtime.Resource.Impl.Addressable {
             return @object;
         }
 
-        public T[] LoadAssetsAsync<T>(IEnumerable<string> tags) where T : Object {
+        public T[] LoadAssets<T>(IEnumerable<string> tags) where T : Object {
             var handle = Addressables.LoadAssetsAsync<T>(tags, (tObject) => { }, Addressables.MergeMode.Union);
             _processingAssetAsyncList.Add(handle);
             var resultList = handle.WaitForCompletion();
