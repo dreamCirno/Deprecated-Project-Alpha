@@ -30,7 +30,7 @@ end
 -- 检测是否已经被缓存
 local function CheckHasCached(self, path)
 	assert(path ~= nil and type(path) == "string" and #path > 0, "path err : "..path)
-	assert(string.endswith(path, ".prefab", true), "GameObject must be prefab : "..path)
+	--assert(string.endswith(path, ".prefab", true), "GameObject must be prefab : "..path)
 	
 	local cachedInst = __instCache[path]
 	if cachedInst ~= nil and table.length(cachedInst) > 0 then

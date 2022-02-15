@@ -16,7 +16,7 @@
 -- 窗口配置
 local UILogin = {
 	Name = UIWindowNames.UILogin,
-	Layer = UILayers.BackgroudLayer,
+	Layer = UILayers.BackgroundLayer,
 	View = require "UI.UILogin.View.UILoginView",
 	ViewModel = require "UI.UILogin.ViewModel.UILoginViewModel",
 	PrefabPath = "UI/Prefabs/View/UILogin.prefab",

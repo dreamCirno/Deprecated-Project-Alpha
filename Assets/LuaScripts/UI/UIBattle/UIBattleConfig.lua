@@ -6,7 +6,7 @@
 -- 窗口配置
 local UIBattleMain = {
 	Name = UIWindowNames.UIBattleMain,
-	Layer = UILayers.BackgroudLayer,
+	Layer = UILayers.BackgroundLayer,
 	View = require "UI.UIBattle.View.UIBattleMainView",
 	ViewModel = require "UI.UIBattle.ViewModel.UIBattleMainViewModel",
 	PrefabPath = "UI/Prefabs/View/UIBattleMain.prefab",

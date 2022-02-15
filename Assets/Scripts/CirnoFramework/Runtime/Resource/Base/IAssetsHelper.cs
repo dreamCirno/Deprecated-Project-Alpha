@@ -53,7 +53,7 @@ namespace CirnoFramework.Runtime.Resource.Base {
         /// 同步加载多个资源
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="tags"></param>
+        /// <param name="tags"></param>g
         /// <returns></returns>
         T[] LoadAssets<T>(IEnumerable<string> tags) where T : UnityEngine.Object;
 

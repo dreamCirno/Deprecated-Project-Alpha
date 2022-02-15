@@ -11,8 +11,8 @@ local UILayers = {
 		OrderInLayer = 0,
 	},
 	-- 背景UI，如：主界面---一般情况下用户不能主动关闭，永远处于其它UI的最底层
-	BackgroudLayer = {
-		Name = "BackgroudLayer",
+	BackgroundLayer = {
+		Name = "BackgroundLayer",
 		PlaneDistance = 900,
 		OrderInLayer = 1000,
 	},

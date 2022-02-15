@@ -4,26 +4,30 @@
 --]]
 
 local AtlasConfig = {
-	Comm = {
-		Name = "Comm",
-		AtlasPath = "UI/Atlas/Comm",
-	},
-	Group = {
-		Name = "Group",
-		PackagePath = "UI/Atlas/Comm",
-	},
-	Hyper = {
-		Name = "Hyper",
-		AtlasPath = "UI/Atlas/Hyper",
-	},
-	Login = {
-		Name = "Login",
-		AtlasPath = "UI/Atlas/Login",
-	},
-	Role = {
-		Name = "Role",
-		AtlasPath = "UI/Atlas/Role",
-	},
+    Comm = {
+        Name = "Comm",
+        AtlasPath = "UI/Atlas/Comm",
+    },
+    Group = {
+        Name = "Group",
+        PackagePath = "UI/Atlas/Comm",
+    },
+    Hyper = {
+        Name = "Hyper",
+        AtlasPath = "UI/Atlas/Hyper",
+    },
+    Login = {
+        Name = "Login",
+        AtlasPath = "UI/Atlas/Login",
+    },
+    Role = {
+        Name = "Role",
+        AtlasPath = "UI/Atlas/Role",
+    },
+    Sample = {
+        Name = "Sample",
+        AtlasPath = "",
+    },
 }
 
 return ConstClass("AtlasConfig", AtlasConfig)

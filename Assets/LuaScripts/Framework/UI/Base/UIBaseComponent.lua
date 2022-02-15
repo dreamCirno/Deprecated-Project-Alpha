@@ -22,161 +22,161 @@ local base = Updatable
 -- 2、ComponentTypeClass.New(child_index)
 -- 3、ComponentTypeClass.New(unity_gameObject)
 local function __init(self, holder, var_arg)
-	assert(not IsNull(holder), "Err : holder nil!")
-	assert(not IsNull(holder.transform), "Err : holder tansform nil!")
-	assert(not IsNull(var_arg), "Err: var_arg nil!")
-	-- 窗口view层脚本
-	self.view = nil
-	-- 持有者
-	self.holder = holder
-	-- 脚本绑定的transform
-	self.transform = nil
-	-- transform对应的gameObject
-	self.gameObject = nil
-	-- trasnform对应的RectTransform
-	self.rectTransform = nil
-	-- 名字：Unity中获取Transform的名字是有GC的，而Lua侧组件大量使用了名字，所以这里缓存下
-	self.__name = nil
-	-- 绑定数据：在某些场景下可以提供诸多便利
-	self.__bind_data = nil
-	-- 可变类型参数，用于重载
-	self.__var_arg = var_arg
-	-- 这里一定要等资源异步加载完毕才启用Update
-	self:EnableUpdate(false)
+    assert(not IsNull(holder), "Err : holder nil!")
+    assert(not IsNull(holder.transform), "Err : holder tansform nil!")
+    assert(not IsNull(var_arg), "Err: var_arg nil!")
+    -- 窗口view层脚本
+    self.view = nil
+    -- 持有者
+    self.holder = holder
+    -- 脚本绑定的transform
+    self.transform = nil
+    -- transform对应的gameObject
+    self.gameObject = nil
+    -- trasnform对应的RectTransform
+    self.rectTransform = nil
+    -- 名字：Unity中获取Transform的名字是有GC的，而Lua侧组件大量使用了名字，所以这里缓存下
+    self.__name = nil
+    -- 绑定数据：在某些场景下可以提供诸多便利
+    self.__bind_data = nil
+    -- 可变类型参数，用于重载
+    self.__var_arg = var_arg
+    -- 这里一定要等资源异步加载完毕才启用Update
+    self:EnableUpdate(false)
 end
 
 -- 析构函数：所有组件的子类不要再写这个函数，释放工作全部放到OnDestroy
 local function __delete(self)
-	self:OnDestroy()
+    self:OnDestroy()
 end
 
 -- 创建
 local function OnCreate(self)
-	assert(not IsNull(self.holder), "Err : holder nil!")
-	assert(not IsNull(self.holder.transform), "Err : holder tansform nil!")
-	-- 初始化view
-	if self._class_type == UILayer then
-		self.view = nil
-	else
-		local now_holder = self.holder
-		while not IsNull(now_holder) do	
-			if now_holder._class_type == UILayer then
-				self.view = self
-				break
-			elseif not IsNull(now_holder.view) then
-				self.view = now_holder.view
-				break
-			end
-			now_holder = now_holder.holder
-		end
-		assert(not IsNull(self.view))
-	end
-	
-	-- 初始化其它基本信息
-	if type(self.__var_arg) == "string" then
-		-- 与持有者的相对路径
-		self.transform = UIUtil.FindTrans(self.holder.transform, self.__var_arg)
-		self.gameObject = self.transform.gameObject
-	elseif type(self.__var_arg) == "number" then
-		-- 持有者第index个孩子
-		self.transform = UIUtil.GetChild(self.holder.transform, self.__var_arg)
-		self.gameObject = self.transform.gameObject
-	elseif type(self.__var_arg) == "userdata" then
-		-- Unity侧GameObject
-		self.gameObject = self.__var_arg
-		self.transform = self.gameObject.transform
-	else
-		error("OnCreate : error params list! "..type(self.__var_arg).." "..tostring(self.__var_arg))
-	end
-	--[[
-	   创建组件时，如果传入的参数是string, 说明是指定路径，设置组件名为路径，如果不这样设置，两不同路径相同组件创建时将差别是重复
-	]]
-	if type(self.__var_arg) == "string" then
-		self.__name = self.__var_arg
-	else
-		self.__name = self.gameObject.name
-	end
+    assert(not IsNull(self.holder), "Err : holder nil!")
+    assert(not IsNull(self.holder.transform), "Err : holder tansform nil!")
+    -- 初始化view
+    if self._class_type == UILayer then
+        self.view = nil
+    else
+        local now_holder = self.holder
+        while not IsNull(now_holder) do
+            if now_holder._class_type == UILayer then
+                self.view = self
+                break
+            elseif not IsNull(now_holder.view) then
+                self.view = now_holder.view
+                break
+            end
+            now_holder = now_holder.holder
+        end
+        assert(not IsNull(self.view))
+    end
 
-	self.rectTransform = UIUtil.FindComponent(self.transform, typeof(CS.UnityEngine.RectTransform))
-	self.__var_arg = nil
+    -- 初始化其它基本信息
+    if type(self.__var_arg) == "string" then
+        -- 与持有者的相对路径
+        self.transform = UIUtil.FindTrans(self.holder.transform, self.__var_arg)
+        self.gameObject = self.transform.gameObject
+    elseif type(self.__var_arg) == "number" then
+        -- 持有者第index个孩子
+        self.transform = UIUtil.GetChild(self.holder.transform, self.__var_arg)
+        self.gameObject = self.transform.gameObject
+    elseif type(self.__var_arg) == "userdata" then
+        -- Unity侧GameObject
+        self.gameObject = self.__var_arg
+        self.transform = self.gameObject.transform
+    else
+        error("OnCreate : error params list! " .. type(self.__var_arg) .. " " .. tostring(self.__var_arg))
+    end
+    --[[
+       创建组件时，如果传入的参数是string, 说明是指定路径，设置组件名为路径，如果不这样设置，两不同路径相同组件创建时将差别是重复
+    ]]
+    if type(self.__var_arg) == "string" then
+        self.__name = self.__var_arg
+    else
+        self.__name = self.gameObject.name
+    end
+
+    self.rectTransform = UIUtil.FindComponent(self.transform, typeof(CS.UnityEngine.RectTransform))
+    self.__var_arg = nil
 end
 
 -- 打开
 local function OnEnable(self)
-	-- 启用更新函数
-	self:EnableUpdate(true)
+    -- 启用更新函数
+    self:EnableUpdate(true)
 end
 
 -- 获取名字
 local function GetName(self)
-	return self.__name
+    return self.__name
 end
 
 -- 设置名字：toUnity指定是否同时设置Unity侧的名字---不建议，实在想不到什么情况下会用，但是调试模式强行设置，好调试
 local function SetName(self, name, toUnity)
-	if self.holder.OnComponentSetName ~= nil then
-		self.holder:OnComponentSetName(self, name)
-	end
-	self.__name = name
-	if toUnity or Config.Debug then
-		if IsNull(self.gameObject) then
-			Logger.LogError("gameObject null, you maybe have to wait for loading prefab finished!")
-			return
-		end
-		self.gameObject.__name = name
-	end
+    if self.holder.OnComponentSetName ~= nil then
+        self.holder:OnComponentSetName(self, name)
+    end
+    self.__name = name
+    if toUnity or Config.Debug then
+        if IsNull(self.gameObject) then
+            Logger.LogError("gameObject null, you maybe have to wait for loading prefab finished!")
+            return
+        end
+        self.gameObject.__name = name
+    end
 end
 
 -- 设置绑定数据
 local function SetBindData(self, data)
-	self.__bind_data = data
+    self.__bind_data = data
 end
 
 -- 获取绑定数据
 local function GetBindData(self)
-	return self.__bind_data
+    return self.__bind_data
 end
 
 -- 激活、反激活
 local function SetActive(self, active)
-	if active then
-		self.gameObject:SetActive(active)
-		self:OnEnable()
-	else
-		self:OnDisable()
-		self.gameObject:SetActive(active)
-	end
+    if active then
+        self.gameObject:SetActive(active)
+        self:OnEnable()
+    else
+        self:OnDisable()
+        self.gameObject:SetActive(active)
+    end
 end
 
 -- 获取激活状态
 local function GetActive(self)
-	return self.gameObject.activeSelf
+    return self.gameObject.activeSelf
 end
 
 -- 等待资源准备完毕：用于协程
 local function WaitForCreated(self)
-	coroutine.waituntil(function()
-		return not IsNull(self.gameObject)
-	end)
+    coroutine.waituntil(function()
+        return not IsNull(self.gameObject)
+    end)
 end
 
 -- 关闭
 local function OnDisable(self)
-	-- 禁用更新函数
-	self:EnableUpdate(false)
+    -- 禁用更新函数
+    self:EnableUpdate(false)
 end
 
 -- 销毁
 local function OnDestroy(self)
-	if self.holder.OnComponentDestroy ~= nil then
-		self.holder:OnComponentDestroy(self)
-	end
-	self.holder = nil
-	self.transform = nil
-	self.gameObject = nil
-	self.rectTransform = nil
-	self.__name = nil
-	self.__bind_data = nil
+    if self.holder.OnComponentDestroy ~= nil then
+        self.holder:OnComponentDestroy(self)
+    end
+    self.holder = nil
+    self.transform = nil
+    self.gameObject = nil
+    self.rectTransform = nil
+    self.__name = nil
+    self.__bind_data = nil
 end
 
 UIBaseComponent.__init = __init

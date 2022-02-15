@@ -6,7 +6,7 @@
 -- 窗口配置
 local UITestMain = {
 	Name = UIWindowNames.UITestMain,
-	Layer = UILayers.BackgroudLayer,
+	Layer = UILayers.BackgroundLayer,
 	View = require "UI.UITestMain.View.UITestMainView",
 	ViewModel = require "UI.UITestMain.ViewModel.UITestMainViewModel",
 	PrefabPath = "UI/Prefabs/View/UITestMain.prefab",

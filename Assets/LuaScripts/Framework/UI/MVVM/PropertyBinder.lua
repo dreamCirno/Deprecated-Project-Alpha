@@ -36,7 +36,7 @@ local function GetView(self)
     return self.view
 end
 
-local  function Add(self, name, valueChangedHandler)
+local function Add(self, name, valueChangedHandler)
     local registerFunc = function(viewModel, bindableProperty)
         table.insert(bindableProperty.OnValueChanged, valueChangedHandler)
         local value = bindableProperty.Value
@@ -50,7 +50,8 @@ local  function Add(self, name, valueChangedHandler)
     self:RegisterEvent(registerFunc, unregisterFunc, name)
 end
 
-local  function AddEx(self, name, onAdd, onInsert, onRemove)--给list用绑定
+local function AddEx(self, name, onAdd, onInsert, onRemove)
+    --给list用绑定
     local registerFunc = function(viewModel, bindableProperty)
         if bindableProperty.AddHandlers then
             table.insert(bindableProperty.AddHandlers, onAdd)
@@ -78,7 +79,7 @@ local  function AddEx(self, name, onAdd, onInsert, onRemove)--给list用绑定
     self:RegisterEvent(registerFunc, unregisterFunc, name)
 end
 
-local  function RegisterEvent(self, eventRegisterHandler, eventUnregisterHandler, name)
+local function RegisterEvent(self, eventRegisterHandler, eventUnregisterHandler, name)
     name = name or ''
 
     local bind = nil
@@ -102,8 +103,8 @@ local  function RegisterEvent(self, eventRegisterHandler, eventUnregisterHandler
     bind = function(viewModel, currentPath)
         currentPath = currentPath or path
         local bindableProperties, targetValue = getProperty(viewModel, currentPath)
-        if bindableProperties==nil then
-            error(string.format("bindableProperty empty! name=%s",name))
+        if bindableProperties == nil then
+            error(string.format("bindableProperty empty! name=%s", name))
         end
 
         for i, bindableProperty in ipairs(bindableProperties) do

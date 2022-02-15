@@ -13,7 +13,7 @@ end
 local function FindComponent(trans, ctype, path)
 	assert(trans ~= nil)
 	assert(ctype ~= nil)
-	
+
 	local targetTrans = trans
 	if path ~= nil and type(path) == "string" and #path > 0 then
 		targetTrans = trans:Find(path)
@@ -64,7 +64,7 @@ local function GetCanvas(ui_component)
 		canvas = ui_component
 	else
 		local now_holder = ui_component.holder
-		while now_holder ~= nil do	
+		while now_holder ~= nil do
 			local var = ui_component:GetComponents(UICanvas)
 			if table.count(var) > 0 then
 				assert(table.count(var) == 1)

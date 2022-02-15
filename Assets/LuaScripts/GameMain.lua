@@ -20,8 +20,9 @@ local function EnterGame()
 	if selected == nil or ServerData:GetInstance().servers[selected] == nil then
 		ClientData:GetInstance():SetLoginServerID(10001)
 	end
-	
-	SceneManager:GetInstance():SwitchScene(SceneConfig.LoginScene)
+
+	UIManager:GetInstance():OpenWindow(UIWindowNames.UIStudyMain)
+	--SceneManager:GetInstance():SwitchScene(SceneConfig.LoginScene)
 end
 
 --主入口函数。从这里开始lua逻辑
