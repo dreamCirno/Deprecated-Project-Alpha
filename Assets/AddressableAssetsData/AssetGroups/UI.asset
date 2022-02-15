@@ -10,24 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Prefabs
+  m_Name: UI
   m_EditorClassIdentifier: 
-  m_GroupName: Prefabs
+  m_GroupName: UI
   m_Data:
     m_SerializedData: []
-  m_GUID: 0ba8feedec32e7f49ac7cc519665dd60
+  m_GUID: a2e1385993de760478203c15b2198baa
   m_SerializeEntries:
-  - m_GUID: 7259efc37bc8ef94c9106d7a442f7e32
-    m_Address: Effect/Prefab/UI/ef_ui_TaskFinish.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6b379c96146b4a84cad2448202093664
-    m_Address: Prefabs
+  - m_GUID: 361ad1bcde18b994da5ea3f7acdb2720
+    m_Address: Sample
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2082cae182ec7ea4e9b8714b098c9bc9, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 822d6cd791fc5ec49a42248994ad9ced, type: 2}
-    - {fileID: 11400000, guid: 0c37c676dc45be9488c5551cbfb053ba, type: 2}
+    - {fileID: 11400000, guid: ad2344583ea442147a39b8f77bbe0434, type: 2}
+    - {fileID: 11400000, guid: c0714e3ba38e20d4ca4ad7dd1f6ce9dc, type: 2}
