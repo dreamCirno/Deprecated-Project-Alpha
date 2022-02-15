@@ -26,7 +26,7 @@ local AtlasConfig = {
     },
     Sample = {
         Name = "Sample",
-        AtlasPath = "",
+        AtlasPath = "TestAtlas",
     },
 }
 

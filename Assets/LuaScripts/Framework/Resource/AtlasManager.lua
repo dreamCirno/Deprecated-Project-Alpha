@@ -13,12 +13,11 @@ local sprite_type = typeof(CS.UnityEngine.Sprite)
 -- 从图集异步加载图片：回调方式
 local function LoadImageAsync(self, atlas_config, image_name, callback, ...)
     local atlas_path = atlas_config.AtlasPath
-    --local image_path = atlas_path .. "/" .. image_name
-    local image_path = image_name
 
-    LoadSpriteAsync(AssetHelper, image_path, function(sprite)
+    LoadSpriteAtlasAsync(AssetHelper, atlas_path, function(spriteAtlas)
         if callback then
-            callback(not IsNull(sprite) and sprite or nil, image_path)
+            local sprite = spriteAtlas:GetSprite(image_name)
+            callback(not IsNull(sprite) and sprite or nil, image_name)
         end
     end)
 end

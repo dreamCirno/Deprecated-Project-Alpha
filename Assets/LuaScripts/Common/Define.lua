@@ -16,3 +16,4 @@ AssetHelper = CS.GameCore.Resource.Asset
 LoadAssetAsync = xlua.get_generic_method(CS.CirnoFramework.Runtime.Resource.Base.IAssetsHelper, 'LoadAssetAsync')
 
 LoadSpriteAsync = LoadAssetAsync(CS.UnityEngine.Sprite)
+LoadSpriteAtlasAsync = LoadAssetAsync(CS.UnityEngine.U2D.SpriteAtlas)
