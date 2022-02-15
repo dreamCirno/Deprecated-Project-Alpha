@@ -11,3 +11,8 @@ Camera = CS.UnityEngine.Camera
 
 ResourceManager = CS.GameCore.Resource
 AssetHelper = CS.GameCore.Resource.Asset
+
+--- Resource Define ---
+LoadAssetAsync = xlua.get_generic_method(CS.CirnoFramework.Runtime.Resource.Base.IAssetsHelper, 'LoadAssetAsync')
+
+LoadSpriteAsync = LoadAssetAsync(CS.UnityEngine.Sprite)
