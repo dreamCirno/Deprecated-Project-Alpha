@@ -30,7 +30,7 @@ local function OnCreate(self, relative_order, effect_config, create_callback)
             end
         end
     end)
-    
+
     if effect_config == nil then
         self:SetOrder(self.relative_order)
     end

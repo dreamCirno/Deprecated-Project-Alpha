@@ -13,55 +13,57 @@ local base = UIBaseContainer
 
 -- 创建
 local function OnCreate(self, binder, property_name, relative_path)
-	base.OnCreate(self)
-	-- Unity侧原生组件
-	self.unity_uibutton = UIUtil.FindButton(self.transform, relative_path)
-	-- 记录点击回调
-	self.__onclick = nil
+    base.OnCreate(self)
+    -- Unity侧原生组件
+    self.unity_uibutton = UIUtil.FindButton(self.transform, relative_path)
+    -- 记录点击回调
+    self.__onclick = nil
 
-	if IsNull(self.unity_uibutton) and IsNull(self.gameObject) then
-		self.gameObject = self.unity_uibutton.gameObject
-		self.transform = self.unity_uibutton.transform
-	end
+    if IsNull(self.unity_uibutton) and IsNull(self.gameObject) then
+        self.gameObject = self.unity_uibutton.gameObject
+        self.transform = self.unity_uibutton.transform
+    end
 
-	if(binder == nil) then return end
-	--绑定事件
-	binder:RegisterEvent(function(viewModel, property)
-		self:SetOnClick(function ()
-			local onClick = property['OnClick']
-			if onClick == nil then
-				return
-			end
-			onClick()
-		end)
-	end, function()
-		if self.__onclick ~= nil then
-			self.unity_uibutton.onClick:RemoveListener(self.__onclick)
-		end
-	end, property_name)
+    if (binder == nil) then
+        return
+    end
+    --绑定事件
+    binder:RegisterEvent(function(viewModel, property)
+        self:SetOnClick(function()
+            local onClick = property['OnClick']
+            if onClick == nil then
+                return
+            end
+            onClick()
+        end)
+    end, function()
+        if self.__onclick ~= nil then
+            self.unity_uibutton.onClick:RemoveListener(self.__onclick)
+        end
+    end, property_name)
 end
 
 -- 虚拟点击
 local function Click(self)
-	if self.__onclick  ~= nil then
-		self.__onclick()
-	end
+    if self.__onclick ~= nil then
+        self.__onclick()
+    end
 end
 
 -- 设置回调
 local function SetOnClick(self, ...)
-	self.__onclick = BindCallback(...)
-	self.unity_uibutton.onClick:AddListener(self.__onclick)
+    self.__onclick = BindCallback(...)
+    self.unity_uibutton.onClick:AddListener(self.__onclick)
 end
 
 -- 资源释放
 local function OnDestroy(self)
-	if self.__onclick ~= nil then
-		self.unity_uibutton.onClick:RemoveListener(self.__onclick)
-	end
-	self.unity_uibutton = nil
-	self.__onclick = nil
-	base.OnDestroy(self)
+    if self.__onclick ~= nil then
+        self.unity_uibutton.onClick:RemoveListener(self.__onclick)
+    end
+    self.unity_uibutton = nil
+    self.__onclick = nil
+    base.OnDestroy(self)
 end
 
 UIButton.OnCreate = OnCreate
