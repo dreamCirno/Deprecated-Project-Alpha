@@ -7,8 +7,12 @@ using ProcedureBase = GameMain.Procedure.Base.ProcedureBase;
 namespace GameMain.Procedure.Impl {
     [Procedure(ProcedureType.Start)]
     public class ProcedureResource : ProcedureBase {
+        private IFsm<IProcedureManager> _procedureOwner;
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner) {
             base.OnEnter(procedureOwner);
+
+            _procedureOwner = procedureOwner;
 
             InitializeAndUpdate();
         }
@@ -70,6 +74,7 @@ namespace GameMain.Procedure.Impl {
 
         private void OnEnterLaunch() {
             Log.Info("进入 Launch 场景。");
+            ChangeState<ProcedureLaunch>(_procedureOwner);
         }
 
         #endregion
