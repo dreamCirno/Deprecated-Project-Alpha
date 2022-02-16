@@ -13,15 +13,5 @@ namespace CirnoFramework.Runtime.Resource.Base {
 
         public abstract void UpdateResource(Action<float, double, double, float> callback, Action downloadComplete,
             Action<string, string> errorCallback, string label = null);
-
-
-        // public abstract Task Initialize();
-        //
-        // public abstract Task UpdateCatalog(Action callback, Action<string> errorCallback);
-        //
-        // public abstract void CheckUpdate(Action<bool> needUpdate);
-        //
-        // public abstract void UpdateResource(Action<float, double, double, float> callback, Action downloadComplete,
-        //     Action<string, string> errorCallback, string key = null);
     }
 }
