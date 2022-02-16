@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace CirnoFramework.Runtime.Resource.Base {
     public abstract class ResourceVersion {
@@ -6,9 +7,21 @@ namespace CirnoFramework.Runtime.Resource.Base {
             return this as T;
         }
 
+        public abstract Task<bool> Initialize();
+
         public abstract void CheckUpdate(Action<bool> needUpdate);
 
         public abstract void UpdateResource(Action<float, double, double, float> callback, Action downloadComplete,
-            Action<string, string> errorCallback, string key = null);
+            Action<string, string> errorCallback, string label = null);
+
+
+        // public abstract Task Initialize();
+        //
+        // public abstract Task UpdateCatalog(Action callback, Action<string> errorCallback);
+        //
+        // public abstract void CheckUpdate(Action<bool> needUpdate);
+        //
+        // public abstract void UpdateResource(Action<float, double, double, float> callback, Action downloadComplete,
+        //     Action<string, string> errorCallback, string key = null);
     }
 }

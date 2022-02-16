@@ -1,5 +1,4 @@
-﻿using CirnoFramework.Runtime.Procedure;
-using CirnoFramework.Runtime.Resource.GameObjectPool;
+﻿using CirnoFramework.Runtime.Resource.GameObjectPool;
 using CirnoFramework.Runtime.Utility;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
@@ -7,7 +6,6 @@ using UnityEngine;
 using ProcedureBase = GameMain.Procedure.Base.ProcedureBase;
 
 namespace GameMain.Procedure.Impl {
-    [Procedure(ProcedureType.Start)]
     public class ProcedureLaunch : ProcedureBase {
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner) {
             base.OnEnter(procedureOwner);
